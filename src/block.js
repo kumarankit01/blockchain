@@ -68,14 +68,14 @@ class Block {
         let eData = this.body
         // Decoding the data to retrieve the JSON representation of the object
         let data  =  hex2ascii(eData)
-        console.log("decoded body = "+data)
+        console.log(`data = ${data}`)
         // Parse the data to an object to be retrieve.
         let dd = JSON.parse(data)
+
         // Resolve with the data if the object isn't the Genesis block
-        if(dd.toString != "Genesis Block")
-        resolve(dd)
-        else
-        reject(Error("its a genesys block"))
+        if(dd && this.height>0){
+            return dd;
+        }
     }
 
 }
